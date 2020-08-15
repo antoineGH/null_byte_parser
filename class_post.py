@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 import os
 from models import Blog, session
+from utils import save_image
 
 # Posts class to handle singular post
 class Posts:
@@ -19,11 +20,21 @@ class Posts:
             self.posts.append(post)
             Posts.nb_post += 1
 
+            # Saving image
+            try:
+                save_image(post.image, 'null_byte', post.picture_fn)
+            except Exception as e:
+                print("Couln\'t save file")
+
             # Adding post to Database
-            post = Blog(link=post.link, title=post.title, summary=post.summary, image=post.image, picture_fn=post.picture_fn, article_content=post.article_content)
-            session.add(post)
-            session.commit()
-            print(f"Adding {post.title} to Posts.")
+            try:
+                post = Blog(link=post.link, title=post.title, summary=post.summary, image=post.image, picture_fn=post.picture_fn, article_content=post.article_content)
+                session.add(post)
+                session.commit()
+                print(f"Adding {post.title} to the database.")
+            except Exception as e:
+                print(f"Couln\'t add {post.title} to the database.")
+
 
     # Removing post from Posts.posts using link
     def remove_post(self, link):

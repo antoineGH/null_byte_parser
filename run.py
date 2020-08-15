@@ -1,7 +1,7 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import requests
-from utils import save_image
+from utils import save_image, name_image
 from class_post import Posts, Post
 
 # Instanciate Variable and Posts object
@@ -28,7 +28,8 @@ for article in articles:
         summary = article.find('div', class_='details').p.text.strip()
         link = article.find('h3', class_="article-headline").a['href']
         image = article.find('img', class_="lazy-img")['data-src']
-        picture_fn = save_image(image, 'null_byte')
+        #! TEST
+        picture_fn = name_image(image)
 
         # Browse article through link to retrieve article information
         driver.get(link)
