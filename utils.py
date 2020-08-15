@@ -1,9 +1,6 @@
 import secrets
 import os
-import json
 import requests
-
-posts = []
 
 def save_image(image, directory):
     random_hex = secrets.token_hex(8)
@@ -20,16 +17,3 @@ def save_image(image, directory):
         img.write(requests.get(image).content)
 
     return picture_fn
-
-def post_posts(title, summary, link, image, picture_fn):
-    post = {"title": title, "summary": summary, "link": link, "image": image, "picture_fn": picture_fn}
-    posts.append(post)
-    return posts
-
-def save_json(json_object):
-    try:
-        with open('posts.json', "w") as json_file:
-            json.dump(json_object, json_file)
-            return 'Json Saved as posts.json'
-    except Exception:
-        pass
