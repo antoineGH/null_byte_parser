@@ -1,21 +1,31 @@
 import json
+from datetime import datetime
 import os
+from models import Blog, session
 
+# Posts class to handle singular post
 class Posts:
-    nb_post = 0
+    nb_post = session.query(Blog).count()
 
     def __init__(self):
-        # Init from existing post in DB
         self.posts = []
 
+    # Adding post to Posts.posts if not in DB
     def add_post(self, post):
         if self.already_exist(post.link):
-            print("Post already exists.")
+            print(f"Post {post.title} already exists.")
         else:
+            # Adding post to Posts.posts
             self.posts.append(post)
             Posts.nb_post += 1
+
+            # Adding post to Database
+            post = Blog(link=post.link, title=post.title, summary=post.summary, image=post.image, picture_fn=post.picture_fn, article_content=post.article_content)
+            session.add(post)
+            session.commit()
             print(f"Adding {post.title} to Posts.")
 
+    # Removing post from Posts.posts using link
     def remove_post(self, link):
         for post in self.posts:
             if post.link == link:
@@ -24,8 +34,10 @@ class Posts:
                 print(f"Removing {post.title} from Posts.")
                 break
 
+    # Export Posts.posts to JSON file
     def save_json(self, filename):
-        directory_path = os.path.join(os.getcwd(), 'static', filename)
+        date = datetime.now().strftime("%d-%m-%y_%H-%M-%S_")
+        directory_path = os.path.join(os.getcwd(), 'static', date + filename)
         serialized = []
 
         for post in self.posts:
@@ -38,11 +50,11 @@ class Posts:
         except Exception:
             print(f"Can't save Json file in {directory_path}")
 
+    # Check from DB is link is already existing
     def already_exist(self, link):
-        # Update to check directly DB with SQLAlchemy
-        for post in self.posts:
-            if post.link == link:
-                return True
+        post = session.query(Blog).filter(Blog.link == link).first()
+        if post:
+            return True
         return False
 
 class Post:
@@ -57,6 +69,7 @@ class Post:
     def __repr__(self):
         return f"Post Object - {self.title}"
 
+    # Serialize from object to dictionnary
     @property
     def serialize(self):
         return {
@@ -68,3 +81,20 @@ class Post:
             'article_content': self.article_content
         }
 
+# # Testing 
+# posts = Posts()
+
+# print(posts.nb_post)
+# print(posts.posts)
+
+# post1 = Post('lol', 'lol', 'lol', 'lol', 'lol', 'lol')
+# post2 = Post('lil', 'lil', 'lil', 'lil', 'lil', 'lil')
+# post3 = Post('lol', 'lol', 'lol', 'lol', 'lol', 'lol')
+
+# posts.add_post(post1)
+# posts.add_post(post2)
+# posts.add_post(post3)
+
+
+# print(posts.nb_post)
+# print(posts.posts)
