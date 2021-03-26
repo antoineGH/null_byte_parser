@@ -9,7 +9,19 @@
 
 ## General info
 
-Those projects aims to practice HTML/CSS and Bootstrap grid
+Those projects aims to practice website data parsing using Selenium drivers.
+
+Browse all articles on the main page to retrieve article information and save it to JSON.
+
+Parsed data would be stored in databases in the following order:
+
+-   id
+-   link
+-   title
+-   summary
+-   image
+-   picture_fn
+-   article_content
 
 ## Screenshots
 
@@ -43,7 +55,21 @@ Project is created with:
 ## Setup
 
 ```
-$ git clone https://github.com/antoineratat/codecademy_python.git
-$ cd codeacademy_python
-$ python file.py
+$ git clone https://github.com/antoineratat/null_byte_parser.git
+$ py -3 -m venv venv
+$ venv\Script\Activate
+$ cd null_byte_parser
+$ pip install -r requirements.txt
+$ python run.py
 ```
+
+<!--
+### Initialize Database
+
+```
+$ venv\Script\Activate
+$ python
+$ python
+$ from run import db
+$ db.create_all()
+$ exit() -->
