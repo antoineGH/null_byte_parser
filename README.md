@@ -54,6 +54,10 @@ Project is created with:
 
 ## Setup
 
+Install Chrome Driver for your OS : https://sites.google.com/a/chromium.org/chromedriver/home
+
+Put the driver exe in null_byte_parser folder.
+
 ```
 $ git clone https://github.com/antoineratat/null_byte_parser.git
 $ py -3 -m venv venv
