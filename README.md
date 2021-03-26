@@ -27,7 +27,7 @@ Selenium WebDriver helps to automates browser and fetch information with beautif
 
 ## Screenshots
 
-![Python Screenshot](https://github.com/antoineratat/codecademy_python/blob/master/screenshots/1.jpeg?raw=true)
+![BS4 Screenshot](https://github.com/antoineratat/null_byte_parser/blob/master/screenshots/1.PNG?raw=true)
 
 ## Technologies
 
