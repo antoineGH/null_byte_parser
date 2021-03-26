@@ -1,4 +1,4 @@
-## Null byte parser
+## Null byte Scrapper
 
 ## Table of contents
 
@@ -9,7 +9,7 @@
 
 ## General info
 
-Those projects aims to practice website data parsing using Selenium drivers.
+Those projects aims to practice website data scraping using **Selenium drivers** and **Beautifulsoup4**.
 
 Browse all articles on the main page to retrieve article information and save it to JSON.
 
@@ -22,6 +22,8 @@ Parsed data would be stored in databases in the following order:
 -   image
 -   picture_fn
 -   article_content
+
+Selenium WebDriver helps to automates browser and fetch information with beautifulsoup4
 
 ## Screenshots
 
@@ -66,14 +68,3 @@ $ cd null_byte_parser
 $ pip install -r requirements.txt
 $ python run.py
 ```
-
-<!--
-### Initialize Database
-
-```
-$ venv\Script\Activate
-$ python
-$ python
-$ from run import db
-$ db.create_all()
-$ exit() -->
