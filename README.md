@@ -27,7 +27,7 @@ Selenium WebDriver helps to automates browser and fetch information with beautif
 
 ## Screenshots
 
-![BS4 Screenshot](https://templars.guru/app/github/null_byte_parser/1.PNG)
+![BS4 Screenshot](https://github.com/antoineratat/github_docs/blob/main/null_byte_parser/1.PNG?raw=true)
 
 ## Technologies
 
